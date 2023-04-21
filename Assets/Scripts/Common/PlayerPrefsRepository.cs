@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerPrefsRepository : IRepository
+namespace Common
 {
-    public void SaveText(string key, string value) => PlayerPrefs.SetString(key, value);
-
-    public string LoadText(string key) => PlayerPrefs.GetString(key);
+    public class PlayerPrefsRepository : IRepository
+    {
+        public string LoadText(string key) => PlayerPrefs.GetString(key);
+        public void SaveText(string key, string value) => PlayerPrefs.SetString(key, value);
+    }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Eidolon.Analytic",
+    "rootNamespace": "Eidolon.Analytic",
+    "references": [
+        "Eidolon.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

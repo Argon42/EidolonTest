@@ -1,5 +1,8 @@
-﻿public interface IRepository
+﻿namespace Common
 {
-    void SaveText(string key, string value);
-    string LoadText(string key);
+    public interface IRepository
+    {
+        string LoadText(string key);
+        void SaveText(string key, string value);
+    }
 }

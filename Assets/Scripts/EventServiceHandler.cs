@@ -1,28 +1,34 @@
 ﻿using System;
+using Common;
+using Eidolon.Analytic.Analytic;
+using Eidolon.Services;
 using UnityEngine;
 
-public class EventServiceHandler : MonoBehaviour
+namespace Eidolon
 {
-    private EventService _eventService;
-    [SerializeField] private int cooldownBeforeSend = 30;
-    [SerializeField] private string uri = "http://localhost:5234/Analytic";
-
-    private void Start()
+    public class EventServiceHandler : MonoBehaviour
     {
-        IRepository repository = new PlayerPrefsRepository();
-        IAnalyticService analyticService = new AnalyticService(uri);
-        _eventService = new EventService(repository, analyticService,
-            cooldownBeforeSend: TimeSpan.FromSeconds(cooldownBeforeSend));
-        _eventService.Initialize();
-    }
+        [SerializeField] private int cooldownBeforeSend = 30;
+        [SerializeField] private string uri = "http://localhost:5234/Analytic";
+        private EventService _eventService;
 
-    private void Update()
-    {
-        _eventService.Update();
-    }
+        private void Start()
+        {
+            IRepository repository = new PlayerPrefsRepository();
+            IAnalyticService analyticService = new AnalyticService(uri);
+            _eventService = new EventService(repository, analyticService,
+                cooldownBeforeSend: TimeSpan.FromSeconds(cooldownBeforeSend));
+            _eventService.Initialize();
+        }
 
-    public void TrackEvent(string type, string data)
-    {
-        _eventService.TrackEvent(type, data);
+        private void Update()
+        {
+            _eventService.Update();
+        }
+
+        public void TrackEvent(string type, string data)
+        {
+            _eventService.TrackEvent(type, data);
+        }
     }
 }

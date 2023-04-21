@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-public interface IAnalyticService
+namespace Eidolon.Analytic.Analytic
 {
-    string ServiceName { get; }
-    Task<bool> TrySendEvents(string events);
+    public interface IAnalyticService
+    {
+        string ServiceName { get; }
+        Task<bool> TrySendEvents(string events);
+    }
 }

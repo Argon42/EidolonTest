@@ -73,18 +73,15 @@ namespace Eidolon.Analytic.Analytic
         private async void SendEvents()
         {
             _cash.AddRange(_events);
-            _events.Clear();
             _lastTryUpdate = DateTime.Now;
             string json = JsonConvert.SerializeObject(new AnalyticSaveData { events = _cash });
             if (await _analyticService.TrySendEvents(json))
             {
+                _events.RemoveRange(0, _cash.Count);
                 _cash.Clear();
                 SaveData();
                 return;
             }
-
-            _events.InsertRange(0, _cash);
-            SaveData();
             _cash.Clear();
         }
 

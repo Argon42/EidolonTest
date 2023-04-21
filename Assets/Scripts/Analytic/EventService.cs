@@ -50,7 +50,6 @@ namespace Eidolon.Analytic.Analytic
                 _events.InsertRange(0, save.events);
             if (_events.Count > 0)
                 SendEvents();
-            _lastTryUpdate = DateTime.Now;
         }
 
         public void TrackEvent(string type, string data)
@@ -91,6 +90,8 @@ namespace Eidolon.Analytic.Analytic
 
         private void TrackEvent(AnalyticEvent analyticEvent)
         {
+            if (_events.Count == 0)
+                _lastTryUpdate = DateTime.Now;
             _events.Add(analyticEvent);
             SaveData();
             TrySendEvents();

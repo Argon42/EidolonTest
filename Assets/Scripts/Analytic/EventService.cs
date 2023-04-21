@@ -39,7 +39,7 @@ public class EventService
         _analyticEventsKey = $"AnalyticEvents_{_analyticService.ServiceName}";
     }
 
-    public void Deinitialize()
+    private void SaveData()
     {
         AnalyticSaveData data = new() { events = _events };
         string json = JsonConvert.SerializeObject(data);
@@ -77,15 +77,19 @@ public class EventService
         if (await _analyticService.TrySendEvents(json))
         {
             _cash.Clear();
+            SaveData();
             return;
         }
+
         _events.InsertRange(0, _cash);
+        SaveData();
         _cash.Clear();
     }
 
     private void TrackEvent(AnalyticEvent analyticEvent)
     {
         _events.Add(analyticEvent);
+        SaveData();
         TrySendEvents();
     }
 

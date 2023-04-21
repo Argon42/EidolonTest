@@ -75,8 +75,12 @@ public class EventService
         _lastTryUpdate = DateTime.Now;
         string json = JsonConvert.SerializeObject(new AnalyticSaveData { events = _cash });
         if (await _analyticService.TrySendEvents(json))
+        {
+            _cash.Clear();
             return;
+        }
         _events.InsertRange(0, _cash);
+        _cash.Clear();
     }
 
     private void TrackEvent(AnalyticEvent analyticEvent)

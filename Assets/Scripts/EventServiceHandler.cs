@@ -1,9 +1,8 @@
 ﻿using System;
-using Common;
-using Eidolon.Analytic.Analytic;
-using Eidolon.Services;
+using Eidolon.Analytic;
+using Eidolon.Common.Common;
+using Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Eidolon
 {

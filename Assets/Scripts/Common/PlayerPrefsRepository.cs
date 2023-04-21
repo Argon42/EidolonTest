@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Common
+namespace Eidolon.Common.Common
 {
     public class PlayerPrefsRepository : IRepository
     {

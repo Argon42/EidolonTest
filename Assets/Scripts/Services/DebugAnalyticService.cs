@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Eidolon.Analytic.Analytic;
+using Eidolon.Analytic;
 using UnityEngine;
 
 namespace Eidolon.Services

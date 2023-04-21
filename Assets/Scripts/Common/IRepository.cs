@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace Eidolon.Common.Common
 {
     public interface IRepository
     {

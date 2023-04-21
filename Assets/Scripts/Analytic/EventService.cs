@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Common;
+using Eidolon.Common.Common;
 using Newtonsoft.Json;
 
-namespace Eidolon.Analytic.Analytic
+namespace Eidolon.Analytic
 {
     public class EventService
     {

@@ -1,3 +1,14 @@
 {
-	"name": "Eidolon.Common"
+    "name": "Eidolon.Common",
+    "rootNamespace": "Eidolon.Common",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

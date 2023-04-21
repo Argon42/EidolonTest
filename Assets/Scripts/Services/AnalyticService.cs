@@ -1,11 +1,11 @@
 using System.Text;
 using System.Threading.Tasks;
-using Common;
-using Eidolon.Analytic.Analytic;
+using Eidolon.Analytic;
+using Eidolon.Common.Common;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Eidolon.Services
+namespace Services
 {
     public class AnalyticService : IAnalyticService
     {

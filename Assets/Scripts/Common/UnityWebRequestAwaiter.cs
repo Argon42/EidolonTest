@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Common
+namespace Eidolon.Common.Common
 {
     public struct UnityWebRequestAwaiter : INotifyCompletion
     {

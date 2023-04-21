@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Eidolon.Analytic.Analytic
+namespace Eidolon.Analytic
 {
     public interface IAnalyticService
     {

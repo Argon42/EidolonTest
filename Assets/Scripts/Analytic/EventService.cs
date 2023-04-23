@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Eidolon.Common.Common;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Eidolon.Analytic
 {
@@ -33,6 +35,7 @@ namespace Eidolon.Analytic
         private readonly List<AnalyticEvent> _events = new();
         private DateTime _lastTryUpdate;
         private readonly List<AnalyticEvent> _cash = new();
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         public EventService(IRepository repository, IAnalyticService analyticService, TimeSpan cooldownBeforeSend)
         {
@@ -82,6 +85,7 @@ namespace Eidolon.Analytic
                 SaveData();
                 return;
             }
+
             _cash.Clear();
         }
 
@@ -94,10 +98,22 @@ namespace Eidolon.Analytic
             TrySendEvents();
         }
 
-        private void TrySendEvents()
+        private async void TrySendEvents()
         {
-            if (_events.Count > 0 && DateTime.Now - _lastTryUpdate >= _cooldownBeforeSend)
-                SendEvents();
+            await _semaphore.WaitAsync();
+            try
+            {
+                if (_events.Count > 0 && DateTime.Now - _lastTryUpdate >= _cooldownBeforeSend)
+                    SendEvents();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
         }
     }
 }

@@ -49,10 +49,10 @@ namespace Eidolon.Analytic
         {
             var json = _repository.LoadText(_analyticEventsKey);
             var save = JsonConvert.DeserializeObject<AnalyticSaveData>(json);
+            _lastTryUpdate = DateTime.MinValue;
             if (save is { events: { } })
                 _events.InsertRange(0, save.events);
-            if (_events.Count > 0)
-                SendEvents();
+            TrySendEvents();
         }
 
         public void TrackEvent(string type, string data)
@@ -75,6 +75,7 @@ namespace Eidolon.Analytic
 
         private async void SendEvents()
         {
+            _cash.Clear();
             _cash.AddRange(_events);
             _lastTryUpdate = DateTime.Now;
             string json = JsonConvert.SerializeObject(new AnalyticSaveData { events = _cash });
